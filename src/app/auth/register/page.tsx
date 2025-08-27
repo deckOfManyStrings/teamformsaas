@@ -49,21 +49,7 @@ export default function RegisterPage() {
       if (error) throw error
 
       if (data.user) {
-        // Create profile record
-        const { error: profileError } = await supabase
-          .from('profiles')
-          .insert({
-            id: data.user.id,
-            email: data.user.email,
-            name,
-            role: 'member', // Default role, will be updated to manager when creating a team
-          })
-
-        if (profileError) {
-          console.error('Profile creation error:', profileError)
-        }
-
-        toast.success('Account created successfully! Please check your email to confirm your account.')
+        toast.success('Account created successfully!')
         router.push('/auth/login')
       }
     } catch (error) {
